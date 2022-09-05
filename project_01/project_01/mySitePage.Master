@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mySitePage.master.cs" Inherits="project_01.mySitePage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.0.0.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            font-size:1.5rem;
+        }
+        navbar{
+            
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+            <a class="navbar-brand d-flex justify-content-between" href="Default.aspx">
+                <img src="Pictures/logo.png" width="40" height="30" alt="logo" />E-SHOPPING</a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menubar" aria-controls="menubar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+            <div class="collapse navbar-collapse" id="menubar">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Default.aspx">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Show Products</li>
+                        </ul>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="Admin.aspx">Admin</a>
+                    </li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right mr-3">
+                    <%
+                        if (Request.IsAuthenticated)
+                        {
+
+
+                    %>
+                        <li class="navbar-text">Hi <%=Page.User.Identity.Name %></li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="btnLotOut" CssClass="nav-link" runat="server" OnClick="btnLotOut_Click">Log Out</asp:LinkButton>
+                        </li>
+                    <%
+                        }
+                        else
+                        {
+
+                    %>
+                        <li class="nav-item">
+                        <a class="nav-link" href="registration.aspx">SIGN UP</a>
+                        </li>
+                         <li class="nav-item">
+                        <a class="nav-link" href="logIn.aspx">LOG IN</a>
+                        </li>
+                    <%
+                        }
+                    %>
+                        
+                     
+                    </ul>
+                    
+
+            </div>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <hr/>
+    <footer class="container">
+        <p class="text-center">&copy;2022-www.myeshopping.com</p>
+    </footer>
+    <script src="Scripts/bootstrap.js"></script>
+</body>
+</html>
